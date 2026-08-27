@@ -12,7 +12,9 @@ This project demonstrates a production-grade Change Data Capture (CDC) pipeline 
 ## Architecture
 The pipeline uses Postgres (Source) -> Debezium -> Redpanda (Kafka) -> Python Consumer -> Postgres (Warehouse) -> dbt.
 
-See [`docs/architecture.md`](docs/architecture.md) for the full Mermaid diagram and component breakdown.
+![Architecture Diagram](docs/architecture.png)
+
+See [`docs/architecture.md`](docs/architecture.md) for the full Mermaid diagram source and component breakdown.
 See [`docs/correctness.md`](docs/correctness.md) for a detailed explanation of the myth of exactly-once delivery and how this pipeline achieves effectively-once processing.
 
 ## How to Run it Locally
