@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_raw_events
+    description: "Parses and flattens the raw JSON payload from Debezium."
+    columns:
+      - name: order_id
+        description: "Primary key for the order."
+      - name: offset_id
+        description: "The composite Kafka offset ID used for exactly-once ingestion deduplication."
+      - name: operation
+        description: "The CDC operation type (c=create, u=update, d=delete, r=snapshot)."
+      - name: lsn
+        description: "The Postgres Log Sequence Number for the transaction."
+
+  - name: dim_orders
+    description: "The final silver layer table containing the latest state of all orders. Fully idempotent and handles out-of-order events."
+    columns:
+      - name: order_id
+        description: "Primary key for the order."
+      - name: _cdc_lsn
+        description: "The Log Sequence Number of the last applied change."
